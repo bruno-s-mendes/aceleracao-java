@@ -12,21 +12,21 @@ public class CriptografiaCesariana implements Criptografia {
 
         String lowerCase = texto.toLowerCase();
         int length = lowerCase.length();
-        String resultado = "";
+        String output = "";
 
         for (int i = 0; i < length; i++){
-            char bagulho = lowerCase.charAt(i);
-            if (bagulho >= '0' && bagulho <+ '9'){
-                resultado = resultado + bagulho;
-            } else if (bagulho == ' '){
-                resultado = resultado + " ";
+            char insideChar = lowerCase.charAt(i);
+            if (insideChar >= '0' && insideChar <= '9'){
+                output = output + insideChar;
+            } else if (insideChar == ' '){
+                output = output + " ";
             } else {
-                int ascii = (int) bagulho;
-                int novoBagulho = ascii + 3;
-                resultado = resultado + (char) novoBagulho;
+                int ascii = (int) insideChar; // Code from https://stackoverflow.com/questions/16458564/convert-character-to-ascii-numeric-value-in-java#:~:text=char%20character%20%3D%20'a'%3B,%2F%2F%20ascii%20is%20now%2097.
+                int encrypted = ascii + 3;
+                output = output + (char) encrypted;
             }
         }
-        return resultado;
+        return output;
     }
 
     @Override
@@ -37,20 +37,20 @@ public class CriptografiaCesariana implements Criptografia {
 
         String lowerCase = texto.toLowerCase();
         int length = lowerCase.length();
-        String resultado = "";
+        String output = "";
 
         for (int i = 0; i < length; i++){
-            char bagulho = lowerCase.charAt(i);
-            if (bagulho >= '0' && bagulho <+ '9'){
-                resultado = resultado + bagulho;
-            } else if (bagulho == ' '){
-                resultado = resultado + " ";
+            char insideChar = lowerCase.charAt(i);
+            if (insideChar >= '0' && insideChar <= '9'){
+                output = output + insideChar;
+            } else if (insideChar == ' '){
+                output = output + " ";
             } else {
-                int ascii = (int) bagulho;
-                int novoBagulho = ascii - 3;
-                resultado = resultado + (char) novoBagulho;
+                int ascii = (int) insideChar;
+                int decrypted = ascii - 3;
+                output = output + (char) decrypted;
             }
         }
-        return resultado;
+        return output;
     }
 }
