@@ -2,10 +2,7 @@ package br.com.codenation;
 
 import br.com.codenation.exceptions.IdentificadorUtilizadoException;
 import br.com.codenation.exceptions.TimeNaoEncontradoException;
-import br.com.codenation.models.Player;
-import br.com.codenation.models.Players;
-import br.com.codenation.models.Team;
-import br.com.codenation.models.Teams;
+import br.com.codenation.models.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,19 +12,19 @@ import java.util.stream.Collectors;
 
 
 public class DesafioMeuTimeApplication implements MeuTimeInterface {
-
+		ArrayList<Team> teams = new ArrayList<Team>();
 	public void incluirTime(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
-		boolean teamCheck = Teams.existsTeam(id);
+		boolean teamCheck = Functions.existsTeam(id, teams);
 		if (teamCheck) throw new IdentificadorUtilizadoException();
 		Team newTeam = new Team(id, nome, dataCriacao , corUniformePrincipal,  corUniformeSecundario);
-		Teams.addTeam(newTeam);
+		teams.add(newTeam);
 	}
 
 	public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
-		boolean playerCheck = Players.existsPlayer(id);
-		if (playerCheck) throw new IdentificadorUtilizadoException();
-		boolean teamCheck = Teams.existsTeam(idTime);
-		if (!teamCheck) throw new TimeNaoEncontradoException();
+//		boolean playerCheck = Players.existsPlayer(id);
+//		if (playerCheck) throw new IdentificadorUtilizadoException();
+//		boolean teamCheck = Teams.existsTeam(idTime);
+//		if (!teamCheck) throw new TimeNaoEncontradoException();
 		Player newPlayer = new Player(id, idTime, nome , dataNascimento,  nivelHabilidade, salario);
 		Players.addPlayer(newPlayer);
 	}
