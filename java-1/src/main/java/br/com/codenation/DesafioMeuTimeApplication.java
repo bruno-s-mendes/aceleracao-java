@@ -8,11 +8,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
 public class DesafioMeuTimeApplication implements MeuTimeInterface {
-		ArrayList<Team> teams = new ArrayList<Team>();
+		ArrayList<Team> teams = new ArrayList<>();
+		ArrayList<Player> players = new ArrayList<>();
 	public void incluirTime(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUniformeSecundario) {
 		boolean teamCheck = Functions.existsTeam(id, teams);
 		if (teamCheck) throw new IdentificadorUtilizadoException();
@@ -21,12 +23,12 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 	}
 
 	public void incluirJogador(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
-//		boolean playerCheck = Players.existsPlayer(id);
-//		if (playerCheck) throw new IdentificadorUtilizadoException();
-//		boolean teamCheck = Teams.existsTeam(idTime);
-//		if (!teamCheck) throw new TimeNaoEncontradoException();
+		boolean playerCheck = Functions.existsPlayer(id, players);
+		if (playerCheck) throw new IdentificadorUtilizadoException();
+		boolean teamCheck = Functions.existsTeam(idTime, teams);
+		if (!teamCheck) throw new TimeNaoEncontradoException();
 		Player newPlayer = new Player(id, idTime, nome , dataNascimento,  nivelHabilidade, salario);
-		Players.addPlayer(newPlayer);
+		players.add(newPlayer);
 	}
 
 	public void definirCapitao(Long idJogador) {
@@ -46,7 +48,15 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 	}
 
 	public List<Long> buscarJogadoresDoTime(Long idTime) {
-		throw new UnsupportedOperationException();
+		boolean teamCheck = Functions.existsTeam(idTime, teams);
+		if (!teamCheck) throw new TimeNaoEncontradoException();
+		List<Long> teamPlayers = new ArrayList<>();
+		for (Player player : players) {
+			if(Objects.equals(player.getIdTime(), idTime)){
+				teamPlayers.add(player.getId());
+			}
+		}
+		return teamPlayers.stream().sorted().collect(Collectors.toList());
 	}
 
 	public Long buscarMelhorJogadorDoTime(Long idTime) {
@@ -59,7 +69,6 @@ public class DesafioMeuTimeApplication implements MeuTimeInterface {
 
 	public List<Long> buscarTimes() {
 		List<Long> idList = new ArrayList<>();
-		List<Team> teams = Teams.getTeams();
 		for (Team team : teams) {
 			idList.add(team.getId());
 		}
