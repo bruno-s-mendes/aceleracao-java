@@ -6,7 +6,7 @@ public class CriptografiaCesariana implements Criptografia {
 
     @Override
     public String criptografar(String texto) {
-//        throw new UnsupportedOperationException("esse method nao esta implementado aainda");
+//        throw new UnsupportedOperationException("esse method nao esta implementado ainda");
         if(texto.length() == 0) throw new IllegalArgumentException();
         if(texto == null) throw new NullPointerException();
 
