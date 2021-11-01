@@ -10,14 +10,15 @@ public class Player {
     private LocalDate dataNascimento;
     private Integer nivelHabilidade;
     private BigDecimal salario;
+    private String isCapitain;
 
     public Player(Long id, Long idTime, String nome, LocalDate dataNascimento, Integer nivelHabilidade, BigDecimal salario) {
-        this.id = id;
-        this.idTime = idTime;
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.nivelHabilidade = nivelHabilidade;
-        this.salario = salario;
+        setId(id);
+        setIdTime(idTime);
+        setNome(nome);
+        setDataNascimento(dataNascimento);
+        setNivelHabilidade(nivelHabilidade);
+        setSalario(salario);
     }
 
     public Long getId() {
@@ -42,5 +43,37 @@ public class Player {
 
     public BigDecimal getSalario() {
         return salario;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setIdTime(Long idTime) {
+        this.idTime = idTime;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setNivelHabilidade(Integer nivelHabilidade) {
+        this.nivelHabilidade = nivelHabilidade;
+    }
+
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
+    }
+
+    public String getIsCapitain() {
+        return isCapitain;
+    }
+
+    public void setIsCapitain(String isCapitain) {
+        this.isCapitain = isCapitain;
     }
 }

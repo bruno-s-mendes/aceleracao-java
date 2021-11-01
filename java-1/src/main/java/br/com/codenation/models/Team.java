@@ -8,13 +8,14 @@ public class Team {
     private LocalDate dataCriacao;
     private String corUniformePrincipal;
     private String corUnifirmeSecundario;
+    private Long idCapitao;
 
     public Team(Long id, String nome, LocalDate dataCriacao, String corUniformePrincipal, String corUnifirmeSecundario) {
-        this.id = id;
-        this.nome = nome;
-        this.dataCriacao = dataCriacao;
-        this.corUniformePrincipal = corUniformePrincipal;
-        this.corUnifirmeSecundario = corUnifirmeSecundario;
+        setId(id);
+        setNome(nome);
+        setDataCriacao(dataCriacao);
+        setCorUniformePrincipal(corUniformePrincipal);
+        setCorUnifirmeSecundario(corUnifirmeSecundario);
     }
 
     public Long getId() {
@@ -35,5 +36,33 @@ public class Team {
 
     public String getCorUnifirmeSecundario() {
         return corUnifirmeSecundario;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setDataCriacao(LocalDate dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public void setCorUniformePrincipal(String corUniformePrincipal) {
+        this.corUniformePrincipal = corUniformePrincipal;
+    }
+
+    public void setCorUnifirmeSecundario(String corUnifirmeSecundario) {
+        this.corUnifirmeSecundario = corUnifirmeSecundario;
+    }
+
+    public Long getIdCapitao() {
+        return idCapitao;
+    }
+
+    public void setIdCapitao(Long idCapitao) {
+        this.idCapitao = idCapitao;
     }
 }

@@ -1,5 +1,7 @@
 package br.com.codenation.models;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Functions {
@@ -26,5 +28,40 @@ public class Functions {
             }
         }
         return result;
+    }
+
+    public static Long getTeamFromPlayer(long playerId, ArrayList<Player> receivedPlayers){
+        long teamId = 0L;
+
+        for (Player player : receivedPlayers) {
+            if (player.getId() == playerId) {
+                teamId = player.getIdTime();
+                break;
+            }
+        }
+        return teamId;
+    }
+
+    public static void setCaptain(long teamId, long playerId, ArrayList<Team> receivedteams){
+        for (Team team : receivedteams) {
+            if (team.getId() == teamId) {
+                team.setIdCapitao(playerId);
+                break;
+            }
+        }
+    }
+
+    public static Long getCapitain(long teamId, ArrayList<Team> receivedTeam){
+        long captainId = 0L;
+
+        for (Team team : receivedTeam) {
+            if (team.getId() == teamId) {
+                if (team.getIdCapitao() != null){
+                    captainId = team.getIdCapitao();
+                    break;
+                }
+            }
+        }
+        return captainId;
     }
 }
